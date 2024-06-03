@@ -1,0 +1,261 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cryptify</title>
+
+    <!-- Meta Description -->
+    <meta name="description" content="Welcome to Cryptify" />
+  
+    <!-- Meta Keywords -->
+    <meta name="keywords" content="Cryptify" />
+  
+    <!-- URL Structure -->
+    <link rel="canonical" href="https://cryptify.online/" />
+    <link rel="icon" type="image/x-icon" href="../static/img/cryptify.png">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Your custom CSS file -->
+     <!-- Font Awesome CDN -->
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body style="background-color: black;">
+    <style>
+        #container1{
+            display: flex;
+        }
+    </style>
+    <nav style="background-color: rgb(53, 53, 53);" class="navbar navbar-expand-lg">
+        <div class="container">
+            <a style="color: white;" class="navbar-brand" href="{% url 'index' %}">
+                <img style="width: 70px;" src="{% static 'img/cryptify.png' %}" alt="">
+            </a>
+            <br>
+            <br>
+            <button style="color: white;" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span><i class="fa-solid fa-bars"></i></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav" style="margin-left: auto;">
+                   
+                           <li class="nav-item">
+                            <a style="color: white;" class="nav-link text-center " href="{% url 'cryptify' %}">cryptify Network</a>
+                        </li> 
+                        <center>
+                        
+                       <div class="row">
+                        
+                        <div class="col">
+                            <li class="nav-item">
+                                <a id="a1" class="nav-link text-center" href="{% url 'signup' %}">register</a>
+                            </li>
+                        </div>
+                        <div class="col">
+                            <li class="nav-item">
+                                <a id="a2" class="nav-link text-center" href="{% url 'login' %}">Log In</a>
+                            </li>
+                        </div>
+                    </div> 
+                    
+                    </center>
+                    <br>
+                      <li class="nav-item d-none">
+                        <a id="a3" class="nav-link text-center" href="{% url 'profile' %}">
+                            <i class="fa-regular fa-user"></i>
+                        </a>
+                    </li>  
+                    
+                 
+                
+                </ul>
+            </div>
+            
+        </div>
+    </nav>
+    
+
+    <div style="color: white;" class="container mt-2">
+        <div class="row">
+            
+            <div class="col-md-6 "><br>
+            <br>
+                    <h1 style="font-size: 50px;">Welcome to cryptify</h1>
+                    <h4 class="text-center text-md-left">Faster, Better, Untrackable</h4>
+                <br>
+                <div>
+                    <input style="height: 50px;width:100%;background-color: transparent;color: white;"  type="email" name="" id="" placeholder="Enter your Email">
+                    <center>
+                        <button style="height: 50px;border-radius: 40px;border: none;margin-top: 10px;margin-left: 10px;" class="p-2">Try cryptify</button>
+                    </center>
+                    
+                </div>
+            </div>
+            
+            <div class="col-md-6"><br>
+                <div >
+                    <img class="img-fluid" src="{% static 'img/Crypto portfolio.gif' %}" autoplay loop muted alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
+    <br>
+    <section>
+        <div style="color: white;" class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <img src="{% static 'img/user-research.gif' %}" class="img-fluid" alt="About Image">
+                </div>
+                <div class="col-md-6">
+                    <br>
+                    <h2>Why Choose Cryptify?</h2>
+                    <ul>
+                        <li><strong>User-Friendly Interface:</strong> Our platform is designed with simplicity in mind, ensuring that even beginners can navigate the world of cryptocurrency without any hassle.</li>
+                        <li><strong>Secure Transactions:</strong> We prioritize your security, employing state-of-the-art encryption and security protocols to protect your assets and personal information.</li>
+                        <li><strong>Real-Time Market Data:</strong> Stay updated with real-time price updates and market trends, enabling you to make informed decisions at every step.</li>
+                        <li><strong>Diverse Cryptocurrency Options:</strong> From Bitcoin to Ethereum, Litecoin, and beyond, Cryptify supports a wide range of cryptocurrencies, giving you the freedom to choose your preferred digital assets.</li>
+                        <li><strong>Reliable Customer Support:</strong> Our dedicated support team is always ready to assist you, providing prompt and effective solutions to any issues or queries you may have.</li>
+                    </ul>
+                </div>
+            </div>
+        </div> 
+    </section>
+    <br>
+    <br>
+    <section class="container">
+        <h3 style="color: white;" class="col-md-6 text-center text-md-left">How P2P Works</h3>
+        <div>
+        <center>
+            <button style="color: white;" class="btn btn-outline-dark action-button" id="buyButton" onclick="toggleBuy()">How to Buy</button>
+            <button style="color: white;" class="btn btn-outline-dark action-button" id="sellButton" onclick="toggleSell()">How to Sell</button>
+        </center>
+            </div>
+         <div class="row">
+            <div>
+                <br>
+                <br>
+                <div id="buyInfo" class="container text-center text-md-left">
+                    <!-- Buy information -->
+                    <div style="color: white;" class="row d-flex">
+                        <div class="col-md-4 container">
+                            <img src="{% static 'img/buy/place.png'%} " alt="">
+                            <p style="white-space: nowrap;">1. Place an Order</p>
+                            <p>Once you place a P2P order, the crypto asset will be escrowed by cryptify P2P.</p>
+                        </div>
+                        <div class="col-md-4 container">
+                            <img src="{% static 'img/buy/pay.png' %}" alt="">
+                            <p style="white-space: nowrap;">2. Pay the Seller</p>
+                            <p>Send money to the seller via the suggested payment methods. Complete the fiat transaction and notify the seller on cryptify P2P.</p>
+                        </div>
+                        <div class="col-md-4">
+                            <img src="{% static 'img/buy/receive.png' %}" alt="">
+                            <p style="white-space: nowrap;">3. Receive Crypto</p>
+                            <p>Once the seller confirms receipt of the money, the escrowed crypto will be released to you.</p>
+                        </div>
+                    </div>
+                    <!-- Other fields and instructions -->
+                </div>
+            
+                <div id="sellInfo" class="hidden container text-center text-md-left">
+                    <!-- Sell information -->
+                    <div style="color: white;" class="row d-flex">
+                        <div class="col-md-4 container">
+                            <img src="{% static 'img/buy/place.png' %}" alt="">
+                            <p style="white-space: nowrap;">1. Place an Order</p>
+                            <p>Once you place a P2P order, the crypto asset will be escrowed by cryptify P2P.</p>
+                        </div>
+                        <div class="col-md-4 container">
+                            <img src="{% static 'img/buy/pay.png' %}" alt="">
+                            <p style="white-space: nowrap;">2.  Verify payment</p>
+                            <p>Check the transaction record in the given payment account, and make sure you receive the money sent by the buyer.</p>
+                        </div>
+                        <div class="col-md-4">
+                            <img src="{% static 'img/buy/receive.png' %}" alt="">
+                            <p style="white-space: nowrap;">3. Release crypto</p>
+                            <p>Once you confirm the receipt of money, release crypto to the buyer on Athene P2P.</p>
+                        </div>
+                    </div>
+                    <!-- Other fields and instructions -->
+                </div>
+                  </div>
+    
+            </div>
+    </section>
+    
+    
+    
+
+
+    <div class="accordion container" id="accordionExample">
+        <div class="card bg-transparent">
+            <div class="card-header d-flex justify-content-between " id="headingOne">
+               
+                    <button style="color: white;font-size: 30px;text-decoration: none;" class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                        <span style="font-size: 20px;">Why Choose cryptify</span>
+                    </button>
+                
+                <span id="plus-icon" class="btn btn-link collapsed plus-icon" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">+</span>
+            </div>
+            <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                <div class="card-body">
+                    Absolutely! Crypto isn't just a trend; it's a revolution in the making. But you're right, not everyone has had the chance to hop on board yet. We're here to change that. It's time to break down the barriers and make crypto accessible to all, regardless of where they are or who they know.
+                </div>
+            </div>
+        </div>
+        
+
+        <div class="card bg-transparent">
+            <div class="card-header d-flex justify-content-between " id="headingTwo">
+                
+                    <button style="color: white;font-size: 30px;text-decoration: none;" class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    <span style="font-size: 20px;">Are Your identities safe</span>
+                    </button>
+                
+                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" id="plus-icon" class="plus-icon">+</button>
+            </div>
+            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                <div class="card-body">
+                    while making use of our simple website we made sure that we don't allow government spies to have access to our website and we make sure our transactions are seamless
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <section style="color: white;background-color: rgb(53, 53, 53);" class="container-fluid">
+            <div class="footer row container">
+                <p class="p-3">cryptify Crypto Buy</p>
+                <p class="p-3">Contact Us: contact@cryptify.online@gmail.com</p>
+                <!--<p class="p-3">Follow Us: 
+                    <a style="color: white;" href="#">Facebook</a> | 
+                    <a style="color: white;" href="#">Twitter</a> | 
+                    <a style="color: white;" href="#">Instagram</a>
+                </p>-->
+            </div>
+        </section>
+      </footer>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+       function toggleBuy() {
+    var buyInfo = document.getElementById("buyInfo");
+    var sellInfo = document.getElementById("sellInfo");
+
+    buyInfo.classList.remove("hidden");
+    sellInfo.classList.add("hidden");
+}
+
+function toggleSell() {
+    var buyInfo = document.getElementById("buyInfo");
+    var sellInfo = document.getElementById("sellInfo");
+
+    buyInfo.classList.add("hidden");
+    sellInfo.classList.remove("hidden");
+}     
+ </script>
+</body>
+</html>
