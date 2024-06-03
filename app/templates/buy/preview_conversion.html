@@ -1,0 +1,133 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cryptify</title>
+
+    <!-- Meta Description -->
+    <meta name="description" content="Welcome to Cryptify" />
+  
+    <!-- Meta Keywords -->
+    <meta name="keywords" content="Cryptify" />
+  
+    <!-- URL Structure -->
+    <link rel="canonical" href="https://cryptify.online/" />
+    <link rel="icon" type="image/x-icon" href="../static/img/cryptify.png">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <!-- Custom CSS -->
+
+</head>
+<body style="background-color: whitesmoke;">
+  
+  <nav style="background-color: rgb(53, 53, 53);" class="navbar navbar-expand-lg">
+    <div class="container-fluid">
+        <a style="color: white;" class="navbar-brand" href="">
+            <img style="width: 70px;" src="{% static 'img/cryptify.png' %}" alt="">
+        </a>
+        <br>
+        <br>
+        <button style="color: white;" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span><i class="fa-solid fa-bars"></i></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav" style="margin-left: auto;">
+               
+                       <li class="nav-item">
+                        <a style="color: white;margin-right: 70px;" class="nav-link" href="{% url 'cryptify' %}">cryptify Network</a>
+                    </li> 
+
+                <br>
+
+                <li class="nav-item dropdown">
+                    <a style="color: white;margin-right: 70px;"  class="nav-link dropdown-toggle " href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Buy Crypto
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="{% url 'buy_crypto' %}">Buy via Ngn Card & Bank Transfer</a>
+                    </div>
+                </li>
+                
+
+            <br>
+            <li class="nav-item dropdown">
+                <a style="color: white;margin-right: 70px;"  class="nav-link dropdown-toggle " href="#" id="navbarDropdownSell" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Sell Crypto
+                </a>
+                <div style="width: 100px;" class="dropdown-menu" aria-labelledby="navbarDropdownSell">
+                    <a class="dropdown-item" href="#">Coming Soon</a>
+                </div>
+            </li>
+            
+
+        <br>
+
+        <li style="display: flex;" class="nav-item dropdown ">
+           
+            <div>
+               <a id="a3" class="nav-link text-center p-2" href="#" >
+                <i class="fa-regular fa-user"></i>
+            </a>   
+            </div>
+             <span role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="mt-2 dropdown-toggle" style="color: white;margin-left: 10px;">
+                Welcome {{ username }}   
+            </span>
+            <br>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="{% url 'profile' %}">Profile</a>
+                <a class="dropdown-item" href="{% url 'profile' %}">Settings</a>
+                <!--<a class="dropdown-item" href="#">Logout</a>-->
+                <form method="post" action="{% url 'logout' %}" class="mt-3">
+                    {% csrf_token %}
+                    <button type="submit" class="dropdown-item btn btn-danger bg-danger text-white">Logout</button>
+                </form>
+            </div>
+            <br>
+          
+        </li>
+            </ul>
+        </div>
+        
+    </div>
+</nav>
+    <div class="d-sm-flex  justify-content-center">
+        <div  class="container">
+            <br>
+            <br>
+         <h2>Preview Conversion</h2>
+        <p>You are buying {{ crypto_amount }} {{ crypto_name }} for {{ amount_naira }} Naira.</p>
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-outline-dark">Proceed to P2P</button>
+            <br>
+            <span class="text-muted">Please note that this is an estimated price. The actual market rate may vary at the time of the transaction.</span>
+        </form>
+        <br>
+        <form method="post" action="{% url 'p2p_page' %}">
+            {% csrf_token %}
+            <button type="submit" name="cancel_trade" class="btn btn-outline-danger">Cancel Trade</button>
+        </form>   
+        <br>
+        </div>
+        <div style="color: black;background-color: white;" class="container-fluid col-md-6 ">
+            <br><br>
+            <h4>Welcome to cryptify P2P Trade</h4>
+            <h5>preview your conversion</h5>
+            <span>When it comes to peer-to-peer supremacy, we reign supreme, setting the gold standard for innovation and reliability in Nigeria.</span>
+    
+            <img class="img-fluid" src="{% static 'img/p2p.gif' %}" alt="">
+        </div>
+        
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>    
+</body>
+</html>
