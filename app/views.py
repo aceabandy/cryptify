@@ -470,9 +470,9 @@ def p2p_page(request):
             messages.success(request, 'Transaction image uploaded and sent to the seller.')
 
     seller_info = {
-        'name': 'John Doe',
-        'account_number': '1234567890',
-        'bank': 'Sample Bank'
+        'name': 'Abandy Cherish',
+        'account_number': '6099165613',
+        'bank': '9 payment service bank',
     }
 
     context = {
