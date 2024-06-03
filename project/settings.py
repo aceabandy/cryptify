@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-+8(&jc2a9^l_52rjab0soj$&xl^r+adfn&s1!w0jfpjg$3)*9u
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['cryptify.online']
+ALLOWED_HOSTS = ['www.cryptify.online']
 
 
 # Application definition
