@@ -108,6 +108,15 @@
 					<input type="submit"  class="con" ></div><br>
 	
 			 </form>-->
+			  {% if messages %}
+             <div class="messages">
+                 {% for message in messages %}
+                     <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}">
+                         {{ message|safe }}
+                     </div>
+                 {% endfor %}
+             </div>
+         {% endif %}
              <form action="." method="POST">
                 {% csrf_token %}
                 
