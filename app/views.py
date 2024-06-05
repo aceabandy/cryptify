@@ -1,11 +1,10 @@
+# Create your views here.
+# views.py
 from datetime import timezone
 from lib2to3.fixes.fix_input import context
 from pyexpat.errors import messages
 from django.conf import settings
 from django.shortcuts import render,redirect,get_object_or_404
-
-# Create your views here.
-# views.py
 from .models import CryptoCurrency,CryptoTransaction
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
@@ -36,6 +35,9 @@ from django.utils import timezone
 from requests.exceptions import RequestException
 from django.views.decorators.csrf import csrf_exempt
 from django.core.mail import EmailMessage
+from .decorators import user_not_authenticated
+from .tokens import account_activation_token
+from django.contrib.auth import get_user_model
 '''
 @login_required
 def profile(request):
@@ -99,6 +101,7 @@ def signup(request):
         form = UserCreationForm()
     return render(request, 'registration/register.html', {'form': form})
 '''
+'''
 def signup(request):
     if request.method == 'POST':
         form = UserRegistrationForm(request.POST)
@@ -117,6 +120,62 @@ def signup(request):
     return render(request, 'registration/register.html', {'form': form})
 #def deposit(request):
     #return render(request,'deposit.html')
+'''
+User = get_user_model()
+
+@user_not_authenticated
+def signup(request):
+    if request.method == "POST":
+        form = UserRegistrationForm(request.POST)
+        if form.is_valid():
+            user = form.save(commit=False)
+            user.is_active = False
+            user.save()
+            activateEmail(request, user, form.cleaned_data.get('email'))
+            return redirect('signup')
+        else:
+            for error in list(form.errors.values()):
+                messages.error(request, error)
+    else:
+        form = UserRegistrationForm()
+
+    return render(
+        request=request,
+        template_name="registration/register.html",
+        context={"form": form}
+    )
+
+def activateEmail(request, user, to_email):
+    print(f"Sending email to {to_email}")
+    mail_subject = "Activate your user account."
+    message = render_to_string("registration/activate_account.html", {
+        'user': user.username,
+        'domain': get_current_site(request).domain,
+        'uid': urlsafe_base64_encode(force_bytes(user.pk)),
+        'token': account_activation_token.make_token(user),
+        'protocol': 'https' if request.is_secure() else 'http'
+    })
+    email = EmailMessage(mail_subject, message, to=[to_email])
+    if email.send():
+        messages.success(request, f'Dear <b>{user.username}</b>, please go to your email <b>{to_email}</b> inbox and click on \
+                the received activation link to confirm and complete the registration. <b>Note:</b> Check your spam folder.')
+    else:
+        messages.error(request, f'Problem sending email to {to_email}, check if you typed it correctly.')
+def activate(request, uidb64, token):
+    try:
+        uid = force_str(urlsafe_base64_decode(uidb64))
+        user = User.objects.get(pk=uid)
+    except (TypeError, ValueError, OverflowError, User.DoesNotExist):
+        user = None
+
+    if user is not None and account_activation_token.check_token(user, token):
+        user.is_active = True
+        user.save()
+        messages.success(request, "Thank you for your email confirmation. Now you can login your account.")
+        return redirect('login')
+    else:
+        messages.error(request, "Activation link is invalid!")
+        return redirect('signup')
 
 @csrf_exempt
 def deposit(request):
