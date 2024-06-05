@@ -28,6 +28,8 @@ urlpatterns = [
     path('preview-conversion/', views.preview_conversion, name='preview_conversion'),
     path('p2p/', views.p2p_page, name='p2p_page'),
     path('cancel-trade/', views.cancel_trade, name='cancel_trade'),
+    #emailconfirmation url
+    path('activate/<uidb64>/<token>/', views.activate, name='activate'),
     
 ]
 
