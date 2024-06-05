@@ -143,7 +143,7 @@ COINMARKETCAP_API_KEY = '003b11b3-ca42-475d-8ae8-0009b9af8905'
 LOGOUT_REDIRECT_URL = 'index'
 
 # settings.py
-
+'''
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
@@ -151,3 +151,11 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'cryptify.online@gmail.com'
 EMAIL_HOST_PASSWORD = 'nfkm pnsi mrxp dapa'
 DEFAULT_FROM_EMAIL = 'webmaster@yourdomain.com'
+'''
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp-relay.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'cryptify@cryptify.online'  # Your Google Workspace email address
+EMAIL_HOST_PASSWORD = 'Daviper1$'  # Your Google Workspace email password
+DEFAULT_FROM_EMAIL = 'cryptify@cryptify.online'
