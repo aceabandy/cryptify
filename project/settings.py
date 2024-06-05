@@ -153,9 +153,9 @@ EMAIL_HOST_PASSWORD = 'nfkm pnsi mrxp dapa'
 DEFAULT_FROM_EMAIL = 'webmaster@yourdomain.com'
 '''
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp-relay.gmail.com'
+EMAIL_HOST = 'smtp.hostinger.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'cryptify@cryptify.online'  # Your Google Workspace email address
-EMAIL_HOST_PASSWORD = 'Daviper1$'  # Your Google Workspace email password
+EMAIL_HOST_USER = 'cryptify@cryptify.online'
+EMAIL_HOST_PASSWORD = 'Xavierparzival1@'
 DEFAULT_FROM_EMAIL = 'cryptify@cryptify.online'
