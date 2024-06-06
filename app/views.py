@@ -284,14 +284,17 @@ def withdraw(request):
     return render(request, 'payments/withdraw.html',context)  # Replace 'withdraw.html' with your template file
 # Define a dictionary to hold cryptocurrency withdrawal fees
 withdrawal_fees = {
-    'btc': 0.00025,  # BTC withdrawal fee
-    'eth': 0.003,  # ETH withdrawal fee
-    'ltc': 0.001,   # LTC withdrawal fee
-    'doge': 2,     # DOGE withdrawal fee (for example, 1 DOGE)
-    'sol': 0.001,     # SOL withdrawal fee
-    'bnb smartchain': 0.0009,
-    'tron': 5
+    'btc': 0.00025,
+    'eth': 0.003,
+    'ltc': 0.001,
+    'doge': 2,  
+    'sol': 0.001,
+    'bnb': 0.0009,
+    'tron': 5,
+    'ton': 0.02,
+    'bch': 0.0003,
 }
+
 
 @csrf_exempt
 def receive(request):
