@@ -482,12 +482,15 @@ def cryptify(request):
 def p2p_page(request):
     profile = request.GET.get('profile')
     transaction_id = request.session.get('transaction_id')
+    
     if not transaction_id:
         return redirect('buy_crypto')
 
     transaction = CryptoTransaction.objects.get(id=transaction_id, user=request.user)
 
     if request.method == 'POST':
+        from_email = settings.DEFAULT_FROM_EMAIL
+
         if 'cancel_trade' in request.POST:
             transaction.status = 'cancelled'
             transaction.save()
@@ -495,7 +498,7 @@ def p2p_page(request):
             send_mail(
                 'P2P Trade Cancelled',
                 'Your P2P trade has been cancelled due to time expiration.',
-                'from@example.com',
+                from_email,
                 [request.user.email],
                 fail_silently=False,
             )
@@ -505,7 +508,7 @@ def p2p_page(request):
             send_mail(
                 'P2P Trade Reminder',
                 'The buyer has reminded you to check the payment.',
-                'from@example.com',
+                from_email,
                 ['cryptify@cryptify.online'],
                 fail_silently=False,
             )
@@ -516,11 +519,10 @@ def p2p_page(request):
             transaction.save()
             messages.success(request, 'Payment confirmed. Awaiting seller confirmation.')
 
-            # Notify buyer of trade completion
             send_mail(
                 'Trade Completed',
                 'Your trade has been completed. Your coins will be arriving soon.',
-                'from@example.com',
+                from_email,
                 [request.user.email],
                 fail_silently=False,
             )
@@ -529,11 +531,10 @@ def p2p_page(request):
             transaction.transaction_image = request.FILES['transaction_image']
             transaction.save()
 
-            # Send email with attachment
             email = EmailMessage(
                 'P2P Trade Payment Image Uploaded',
                 'The buyer has uploaded the transaction image for your reference.',
-                'from@example.com',
+                from_email,
                 ['cryptify@cryptify.online']
             )
             email.attach(transaction.transaction_image.name, transaction.transaction_image.read())
@@ -554,8 +555,7 @@ def p2p_page(request):
         'username': request.user.username,
     }
 
-    return render(request, 'buy/p2p_page.html', context)
-@csrf_exempt
+    return render(request, 'buy/p2p_page.html', context)@csrf_exempt
 def cancel_trade(request):
     if request.method == 'POST':
         transaction_id = request.session.get('transaction_id')
