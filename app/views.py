@@ -375,7 +375,7 @@ def password_reset_request(request):
                     }
                     email = render_to_string(email_template_name, context)
                     try:
-                        send_mail(subject, email, 'admin@mywebsite.com', [user.email], fail_silently=False)
+                        send_mail(subject, email, 'cryptify@cryptify.online', [user.email], fail_silently=False)
                     except:
                         return HttpResponse("Invalid header found.")
             return redirect("password_reset_done")
@@ -506,7 +506,7 @@ def p2p_page(request):
                 'P2P Trade Reminder',
                 'The buyer has reminded you to check the payment.',
                 'from@example.com',
-                ['cryptify.online@gmail.com'],
+                ['cryptify@cryptify.online'],
                 fail_silently=False,
             )
             messages.success(request, 'Reminder sent to the seller.')
@@ -534,7 +534,7 @@ def p2p_page(request):
                 'P2P Trade Payment Image Uploaded',
                 'The buyer has uploaded the transaction image for your reference.',
                 'from@example.com',
-                ['cryptify.online@gmail.com']
+                ['cryptify@cryptify.online']
             )
             email.attach(transaction.transaction_image.name, transaction.transaction_image.read())
             email.send()
