@@ -555,7 +555,8 @@ def p2p_page(request):
         'username': request.user.username,
     }
 
-    return render(request, 'buy/p2p_page.html', context)@csrf_exempt
+    return render(request, 'buy/p2p_page.html', context)
+@csrf_exempt
 def cancel_trade(request):
     if request.method == 'POST':
         transaction_id = request.session.get('transaction_id')
