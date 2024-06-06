@@ -229,6 +229,9 @@
     </div>
 <div class="container mt-5">
     <h2 class="">Deposit</h2>
+    <div class="alert alert-info" role="alert">
+        Please input your username and copy the address. Click on the "Deposit" button for a swift Deposit.
+    </div>
     <form method="post" id="cryptoForm">
         {% csrf_token %}
         <div class="container-fluid form-row align-items-center">
@@ -302,10 +305,9 @@
                     'ton': 'UQBA4eo0m34MHuLwRrB9ja4IOGqsRFFr6xEZ79xEcjlk-ORA',-->
                 <p>Note:</p>
                 <p>Send only the selected cryptocurrency to this address:</p>
-                <p>Minimum Deposit: 1$
-                    <br>
-                    Confirmations Required: 1
-                    <br>
+                Confirmations Required: 1
+                <span>make sure you click on the deposit button and fill the form</span> 
+                   <br>
                     Please do not deposit invalid assets to this address. We are not responsible for lost funds.</p>
                  <p class="text-danger">Read carefully and make sure you copy the correct address to avoid loss.</p>
                 
