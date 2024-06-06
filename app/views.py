@@ -60,17 +60,26 @@ def profile(request):
 def profile(request):
     # Ensure the profile exists or create it if it doesn't
     profile, created = Profile.objects.get_or_create(user=request.user)
-    
-    # Filter CryptoBalance objects based on the current user's profile
+
+    # Get all available cryptocurrencies
+    cryptocurrencies = CryptoCurrency.objects.all()
+
+    # Create CryptoBalance instances if they don't exist for the user
+    for crypto in cryptocurrencies:
+        CryptoBalance.objects.get_or_create(profile=profile, cryptocurrency=crypto)
+
+    # Fetch CryptoBalance objects based on the current user's profile
     crypto_balances = CryptoBalance.objects.filter(profile=profile)
     
     # Calculate the total value of all cryptocurrencies
     total_value = sum(balance.value for balance in crypto_balances)
-     # Get the user's transactions
+
+    # Get the user's transactions
     transactions = Transaction.objects.filter(user=request.user).order_by('-date')
 
     # Get the user's notifications
     notifications = Notification.objects.filter(user=request.user).order_by('-created_at')
+    
     # Combine the context data into a single dictionary
     context = {
         'username': request.user.username,
@@ -81,6 +90,7 @@ def profile(request):
     }
     
     return render(request, 'profile.html', context)
+
 
 
 
