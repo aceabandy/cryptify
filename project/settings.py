@@ -143,7 +143,7 @@ COINMARKETCAP_API_KEY = '003b11b3-ca42-475d-8ae8-0009b9af8905'
 LOGOUT_REDIRECT_URL = 'index'
 
 # settings.py
-'''
+
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
@@ -159,3 +159,4 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'cryptify@cryptify.online'
 EMAIL_HOST_PASSWORD = 'Xavierparzival1@'
 DEFAULT_FROM_EMAIL = 'cryptify@cryptify.online'
+'''
